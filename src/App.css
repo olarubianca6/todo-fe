@@ -1,0 +1,372 @@
+/* General styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Container for the todo app */
+.todo-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+/* Task input form */
+.task-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-input input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.task-input button {
+  padding: 12px 20px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.task-input button:hover {
+  background-color: #d62828;
+}
+
+/* Title styling */
+h1 {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Task list styles */
+.task-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.task-container li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.task-container li:last-child {
+  border-bottom: none;
+}
+
+.task-container input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.task-container span.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-container span {
+  flex-grow: 1;
+  font-size: 18px;
+}
+
+.task-container button {
+  padding: 5px 10px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.task-container button:hover {
+  background-color: #d62828;
+}
+
+/* Auth buttons */
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.auth-buttons button {
+  padding: 10px 20px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.auth-buttons button:hover {
+  background-color: #d62828;
+}
+
+/* Log out button */
+button {
+  padding: 10px 20px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #d62828;
+}
+
+/* Container for Auth pages */
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading for Auth pages */
+.auth-container h2 {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input fields for Signup and Login */
+.auth-container label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Styling for the Signup and Login buttons */
+.auth-page-btn {
+  padding: 12px 20px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.auth-page-btn:hover {
+  background-color: #d62828;
+}
+
+/* Link styling in Signup and Login pages */
+.auth-container a {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #e63946;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+.date-picker-btn {
+  padding: 12px 20px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.date-picker-btn:hover {
+  background-color: #d62828;
+}
+
+.calendar-container {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.tasks-for-date {
+  margin-top: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tasks-for-date h2 {
+  margin-bottom: 10px;
+}
+
+.due-date {
+  margin-left: auto; 
+  margin-right: 10px; 
+  text-align: center;
+  font-size: 0.5rem;
+  color: #666;
+}
+
+/* Calendar Styles */
+.react-calendar {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.react-calendar__tile {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  padding: 12px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.react-calendar__tile:disabled {
+  background-color: #f0f0f0;
+  color: #bbb;
+}
+
+.react-calendar__tile--active {
+  background-color: #007BFF;
+  color: white;
+  font-weight: bold;
+}
+
+.react-calendar__tile--now {
+  background-color: #ffeb3b;
+  font-weight: bold;
+  color: #333;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #f44336; 
+}
+
+.react-calendar__month-view__weekdays {
+  color: #555;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.react-calendar__tile--hasActive {
+  background-color: #ffeb3b;
+  font-weight: bold;
+}
+
+.calendar-container {
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation button {
+  background: transparent;
+  color: #333;
+  border: none;
+  font-size: 1rem;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+
+.react-calendar__navigation__label {
+  font-size: 1rem;
+  color: #333;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 20px;
+}
+
+nav a {
+  background-color: #e63946;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #d62828;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;  
+}
+
+.auth-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.auth-btn {
+  padding: 3px 6px;
+  border: none;
+  background-color: #e63946;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.auth-btn:hover {
+  background-color: #d62828;
+}
