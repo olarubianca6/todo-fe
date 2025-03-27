@@ -6,14 +6,17 @@ import TaskList from './components/TaskList';
 import TaskInput from './components/TaskInput';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import CalendarPage from './components/CalendarPage'; // Import the calendar page
+import CalendarPage from './components/CalendarPage'; 
+
+const TASKS_API_BASE = 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
+const USERS_API_BASE = 'https://todousers-71023456585.us-central1.run.app';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    axios.get('http://localhost:5001/tasks', {
+    axios.get(`${TASKS_API_BASE}/get_all_tasks`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {}
     })
       .then(response => setTasks(response.data))
@@ -22,24 +25,17 @@ const App = () => {
 
   const addTask = (taskText, dueDate) => {
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
-    axios.post('http://localhost:5001/tasks', { text: taskText, completed: false, dueDate }, { headers })
+    axios.post(`${TASKS_API_BASE}/insert_task`,
+      new URLSearchParams({ task: taskText, description: dueDate }),
+      { headers })
       .then(response => setTasks([...tasks, response.data]))
       .catch(error => console.error('Error adding task:', error));
   };
 
-  const toggleTask = (taskId) => {
-    const headers = token ? { Authorization: `Bearer ${token}` } : {};
-    axios.patch(`http://localhost:5001/tasks/${taskId}`, {}, { headers })
-      .then(response => {
-        const updatedTasks = tasks.map(task => task.id === taskId ? response.data : task);
-        setTasks(updatedTasks);
-      })
-      .catch(error => console.error('Error toggling task:', error));
-  };
-
   const deleteTask = (taskId) => {
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
-    axios.delete(`http://localhost:5001/tasks/${taskId}`, { headers })
+    axios.delete(`${TASKS_API_BASE}/delete_task`,
+      { data: new URLSearchParams({ task: taskId }), headers })
       .then(() => setTasks(tasks.filter(task => task.id !== taskId)))
       .catch(error => console.error('Error deleting task:', error));
   };
@@ -49,43 +45,31 @@ const App = () => {
     setToken(null);
   };
 
-  const sortedTasks = [...tasks].sort((a, b) => {
-    const dateA = a.dueDate ? new Date(a.dueDate) : new Date(0); 
-    const dateB = b.dueDate ? new Date(b.dueDate) : new Date(0);
-    
-    if (a.completed === b.completed) {
-      return dateA - dateB;
-    }
-    
-    return a.completed ? 1 : -1;
-  });
-
   return (
     <Router>
       <nav>
         <Link to="/todo">To-Do List</Link> | <Link to="/calendar">Calendar</Link>
         <div className="auth-buttons-container">
-        {!token ? (
-          <>
-            <Link to="/signup"><button className="auth-btn">Sign Up</button></Link>
-            <Link to="/login"><button className="auth-btn">Log In</button></Link>
-          </>
-        ) : (
-          <button className="auth-btn" onClick={logout}>Log Out</button>
-        )}
-      </div>
+          {!token ? (
+            <>
+              <Link to="/signup"><button className="auth-btn">Sign Up</button></Link>
+              <Link to="/login"><button className="auth-btn">Log In</button></Link>
+            </>
+          ) : (
+            <button className="auth-btn" onClick={logout}>Log Out</button>
+          )}
+        </div>
       </nav>
       <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/signup" element={<Signup USERS_API_BASE={USERS_API_BASE} />} />
+        <Route path="/login" element={<Login USERS_API_BASE={USERS_API_BASE} setToken={setToken} />} />
         <Route path="/" element={<Navigate to="/todo" />} />
         <Route path="/todo" element={
           <div className="todo-container">
             <h1>To-Do List</h1>
             <TaskInput addTask={addTask} />
             <TaskList 
-              tasks={sortedTasks} 
-              toggleTask={toggleTask} 
+              tasks={tasks} 
               deleteTask={deleteTask} 
             />
           </div>
