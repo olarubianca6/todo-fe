@@ -10,20 +10,19 @@ function Login({ USERS_API_BASE, setToken }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${USERS_API_BASE}/login_user`,
-        new URLSearchParams({ email, password })
-      );
-      if (response.data.user && response.data.user !== "Passwords not matching!") {
-        localStorage.setItem('token', response.data.user.username);
-        setToken(response.data.user.username);
-        navigate('/todo');
-      } else {
-        console.error('Login failed:', response.data);
-      }
+        const response = await axios.post(`${BASE_USER_URL}/login_user`, new URLSearchParams({
+            email: `${username}@example.com`, password
+        }));
+        if (response.data.user && response.data.user.username) {
+            localStorage.setItem('token', response.data.user.username);
+            navigate('/todo');
+        } else {
+            alert("Invalid credentials");
+        }
     } catch (error) {
-      console.error('Login request failed:', error);
+        console.error("Login failed:", error);
     }
-  };
+};
 
   return (
     <div className="auth-container">

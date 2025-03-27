@@ -11,15 +11,19 @@ function Signup({ USERS_API_BASE }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${USERS_API_BASE}/insert_user`,
-        new URLSearchParams({ email, username, password })
-      );
-      console.log(response.data);
-      navigate('/login');
+        const response = await axios.post(`${BASE_USER_URL}/insert_user`, new URLSearchParams({
+            username, password, email: `${username}@example.com`
+        }));
+        console.log(response.data);
+        if (response.data === "User created") {
+            navigate('/login');
+        } else {
+            alert(response.data);
+        }
     } catch (error) {
-      console.error('Signup failed:', error);
+        console.error("Signup failed:", error);
     }
-  };
+};
 
   return (
     <div className="auth-container">

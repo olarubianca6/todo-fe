@@ -32,13 +32,13 @@ const App = () => {
       .catch(error => console.error('Error adding task:', error));
   };
 
-  const deleteTask = (taskId) => {
-    const headers = token ? { Authorization: `Bearer ${token}` } : {};
-    axios.delete(`${TASKS_API_BASE}/delete_task`,
-      { data: new URLSearchParams({ task: taskId }), headers })
-      .then(() => setTasks(tasks.filter(task => task.id !== taskId)))
-      .catch(error => console.error('Error deleting task:', error));
-  };
+  const deleteTask = (taskName) => {
+    axios.delete(`${BASE_TASK_URL}/delete_task`, {
+        data: new URLSearchParams({ task: taskName }), headers
+    })
+    .then(() => setTasks(tasks.filter(task => task.task !== taskName)))
+    .catch(error => console.error('Error deleting task:', error));
+};
 
   const logout = () => {
     localStorage.removeItem('token');
