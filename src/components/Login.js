@@ -4,7 +4,6 @@ import axios from 'axios';
 
 function Login({ USERS_API_BASE, setToken }) {
   const BASE_USER_URL = USERS_API_BASE || 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
@@ -12,9 +11,12 @@ function Login({ USERS_API_BASE, setToken }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post(`${BASE_USER_URL}/login_user`, new URLSearchParams({
-            email: `${username}@example.com`, password
-        }));
+        const loginData = username.includes('@') 
+            ? { email: username, password }  
+            : { username, password };        
+
+        const response = await axios.post(`${BASE_USER_URL}/login_user`, new URLSearchParams(loginData));
+        
         if (response.data.user && response.data.user.username) {
             const token = response.data.user.username; 
             localStorage.setItem('token', token);
