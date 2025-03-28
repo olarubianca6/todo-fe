@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Signup({ USERS_API_BASE }) {
+  const BASE_USER_URL = USERS_API_BASE || 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
