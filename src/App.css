@@ -1,3 +1,4 @@
+/* General styles */
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +11,7 @@ body {
   color: #333;
 }
 
+/* Container for the todo app */
 .todo-container {
   max-width: 600px;
   margin: 0 auto;
@@ -20,18 +22,30 @@ body {
   margin-top: 50px;
 }
 
+/* Task input form */
 .task-input {
-  display: flex;
-  gap: 10px;
+  display: block;
   margin-bottom: 20px;
 }
 
-.task-input input {
-  flex: 1;
+.task-input input,
+.task-input textarea {
+  width: 100%;
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.task-input textarea {
+  margin-top: 10px;
+  height: 100px; 
+  resize: vertical;
+}
+
+.task-input .date-picker-btn {
+  margin: 10px;
 }
 
 .task-input button {
@@ -48,6 +62,7 @@ body {
   background-color: #d62828;
 }
 
+/* Title styling */
 h1 {
   text-align: center;
   font-size: 2em;
@@ -56,6 +71,7 @@ h1 {
 }
 
 /* Task list styles */
+
 .task-container ul {
   list-style: none;
   padding: 0;
@@ -87,6 +103,7 @@ h1 {
   font-size: 18px;
 }
 
+/* Added margin and padding around the Edit and Delete buttons */
 .task-container button {
   padding: 5px 10px;
   background-color: #e63946;
@@ -95,6 +112,7 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  margin-left: 10px;  /* Added space between buttons */
 }
 
 .task-container button:hover {
@@ -123,6 +141,7 @@ h1 {
   background-color: #d62828;
 }
 
+/* Log out button */
 button {
   padding: 10px 20px;
   background-color: #e63946;
@@ -137,6 +156,7 @@ button:hover {
   background-color: #d62828;
 }
 
+/* Container for Auth pages */
 .auth-container {
   max-width: 400px;
   margin: 50px auto;
@@ -146,6 +166,7 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading for Auth pages */
 .auth-container h2 {
   text-align: center;
   font-size: 2em;
@@ -153,6 +174,7 @@ button:hover {
   margin-bottom: 20px;
 }
 
+/* Input fields for Signup and Login */
 .auth-container label {
   font-size: 16px;
   margin-bottom: 5px;
@@ -169,6 +191,7 @@ button:hover {
   margin-bottom: 20px;
 }
 
+/* Styling for the Signup and Login buttons */
 .auth-page-btn {
   padding: 12px 20px;
   background-color: #e63946;
@@ -185,6 +208,7 @@ button:hover {
   background-color: #d62828;
 }
 
+/* Link styling in Signup and Login pages */
 .auth-container a {
   text-align: center;
   display: block;
@@ -232,10 +256,12 @@ button:hover {
 .due-date {
   margin-left: auto; 
   margin-right: 10px; 
+  margin-top: 10px;
   text-align: center;
-  font-size: 0.5rem;
+  font-size: 0.9rem;
   color: #666;
 }
+
 
 /* Calendar Styles */
 .react-calendar {
@@ -360,3 +386,60 @@ nav a:hover {
 .auth-btn:hover {
   background-color: #d62828;
 }
+
+.task-description {
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 4px;
+  margin-left: 20px;
+  display: block;
+}
+
+.completed .description {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.description-input {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.task-input textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.edit-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.edit-popup input {
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+}
+
+.edit-popup button {
+  padding: 10px 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.edit-popup button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
