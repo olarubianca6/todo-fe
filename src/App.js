@@ -16,7 +16,7 @@ const App = () => {
   const [newDescription, setNewDescription] = useState('');
   const [newDueDate, setNewDueDate] = useState('');
   const [username, setUsername] = useState(localStorage.getItem('username') || 'guest'); 
-  const BACKEND_URL = process.env.REACT_APP_USERS_API_BASE || 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
+  const BACKEND_URL = 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
 
   useEffect(() => {
     axios.get(`${BACKEND_URL}/get_all_tasks`, {
