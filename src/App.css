@@ -103,7 +103,6 @@ h1 {
   font-size: 18px;
 }
 
-/* Added margin and padding around the Edit and Delete buttons */
 .task-container button {
   padding: 5px 10px;
   background-color: #e63946;
@@ -112,7 +111,7 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  margin-left: 10px;  /* Added space between buttons */
+  margin-left: 10px;
 }
 
 .task-container button:hover {
