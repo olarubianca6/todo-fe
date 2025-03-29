@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({ USERS_API_BASE, setToken }) {
-  const BASE_USER_URL = USERS_API_BASE || 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
+function Login({setToken }) {
+  const BASE_USER_URL = 'https://todousers-71023456585.us-central1.run.app';
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
