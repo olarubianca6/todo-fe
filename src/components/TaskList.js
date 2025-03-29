@@ -1,6 +1,7 @@
 import React from 'react';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
-const TaskList = ({ tasks, toggleTask, deleteTask}) => {
+const TaskList = ({ tasks, toggleTask, deleteTask, startEditing }) => {
   return (
     <div className="task-container">
       <ul>
@@ -11,13 +12,29 @@ const TaskList = ({ tasks, toggleTask, deleteTask}) => {
               checked={task.completed} 
               onChange={() => toggleTask(task.id)} 
             />
-            <span className={task.completed ? "completed" : ""}>{task.text}</span>
-            {task.dueDate && (
-              <span className="due-date">
-                📅 Due: {new Date(task.dueDate).toLocaleDateString()}
+            <div className="task-content">
+              <span className={task.completed ? "completed" : ""}>
+                {task.text}
               </span>
+              {task.description && (
+                <p className={`task-description ${task.completed ? "completed" : ""}`}>
+                  {task.description}
+                </p>
+              )}
+            </div>
+            {task.dueDate && (
+              <div className="due-date">
+                📅 Due: {new Date(task.dueDate).toLocaleDateString()}
+              </div>
             )}
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
+            <div className="task-actions">
+              <button onClick={() => startEditing(task)}>
+                <FaEdit /> Edit
+              </button>
+              <button onClick={() => deleteTask(task.id)}>
+                <FaTrash /> Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
