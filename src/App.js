@@ -16,18 +16,18 @@ const App = () => {
   const [newDescription, setNewDescription] = useState('');
   const [newDueDate, setNewDueDate] = useState('');
   const [username, setUsername] = useState(localStorage.getItem('username') || 'guest'); 
-  const USERS_API_BASE = process.env.REACT_APP_USERS_API_BASE || 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
+  const BACKEND_URL = process.env.REACT_APP_USERS_API_BASE || 'https://us-central1-todo-454613.cloudfunctions.net/backendtodo';
 
   useEffect(() => {
-    axios.get(`${USERS_API_BASE}/get_all_tasks`, {
+    axios.get(`${BACKEND_URL}/get_all_tasks`, {
       params: { username }, 
     })
       .then(response => setTasks(response.data))
       .catch(error => console.error('Error fetching tasks:', error));
-  }, [username, USERS_API_BASE]);
+  }, [username, BACKEND_URL]);
 
   const addTask = (taskText, description, dueDate) => {
-    axios.post(`${USERS_API_BASE}/insert_task`, 
+    axios.post(`${BACKEND_URL}/insert_task`, 
       {
         username,
         task: taskText, 
@@ -41,7 +41,7 @@ const App = () => {
   };
 
   const toggleTask = (taskId) => {
-    axios.put(`${USERS_API_BASE}/update_task`, 
+    axios.put(`${BACKEND_URL}/update_task`, 
       { 
         username,
         task: taskId,
@@ -55,7 +55,7 @@ const App = () => {
   };
 
   const deleteTask = (taskId) => {
-    axios.delete(`${USERS_API_BASE}/delete_task`, 
+    axios.delete(`${BACKEND_URL}/delete_task`, 
       { 
         data: { username, task: taskId }
       })
@@ -83,7 +83,7 @@ const App = () => {
       duedate: newDueDate,
     };
 
-    axios.put(`${USERS_API_BASE}/update_task`, updatedTask)
+    axios.put(`${BACKEND_URL}/update_task`, updatedTask)
       .then(response => {
         const updatedTasks = tasks.map(task => 
           task.id === response.data.id ? response.data : task
@@ -128,8 +128,8 @@ const App = () => {
         </div>
       </nav>
       <Routes>
-        <Route path="/signup" element={<Signup setToken={setToken} setUsername={setUsername} USERS_API_BASE={USERS_API_BASE} />} />
-        <Route path="/login" element={<Login setToken={setToken} setUsername={setUsername} USERS_API_BASE={USERS_API_BASE} />} />
+        <Route path="/signup" element={<Signup setToken={setToken} setUsername={setUsername} />} />
+        <Route path="/login" element={<Login setToken={setToken} setUsername={setUsername}/>} />
         <Route path="/" element={<Navigate to="/todo" />} />
         <Route path="/todo" element={
           <div className="todo-container">
