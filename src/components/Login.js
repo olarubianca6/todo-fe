@@ -11,23 +11,23 @@ function Login({ USERS_API_BASE, setToken }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const loginData = username.includes('@') 
-            ? { email: username, password }  
-            : { username, password };        
-
-        const response = await axios.post(`${BASE_USER_URL}/login_user`, new URLSearchParams(loginData));
-        
-        if (response.data.user && response.data.user.username) {
-            const token = response.data.user.username; 
-            localStorage.setItem('token', token);
-            setToken(token); 
-            navigate('/todo');
-        } else {
-            alert("Invalid credentials");
-        }
+      const loginData = username.includes('@') 
+          ? { email: username, password }  
+          : { username, password };        
+  
+      const response = await axios.post(`${BASE_USER_URL}/login_user`, loginData);
+      
+      if (response.data.user && response.data.user.username) {
+        const token = response.data.user.username; 
+        localStorage.setItem('token', token);
+        setToken(token); 
+        navigate('/todo');
+      } else {
+        alert("Invalid credentials");
+      }
     } catch (error) {
-        console.error("Login failed:", error);
-        alert("An error occurred during login. Please try again.");
+      console.error("Login failed:", error);
+      alert("An error occurred during login. Please try again.");
     }
   };
 
